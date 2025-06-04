@@ -20,7 +20,6 @@ body {
   font-size: 20px;
   font-weight: 600;
   display: block;
-  
 }
 
 #searchInput {
@@ -35,7 +34,7 @@ body {
 .products {
   display: grid;
   gap: 15px;
-  grid-template-columns:  auto auto auto auto;
+  grid-template-columns: auto auto auto auto;
 }
 
 .product {
@@ -85,6 +84,8 @@ body {
   background-color: red;
 }
 
+/* CART */
+
 .cart {
   width: 34%;
   text-align: center;
@@ -97,6 +98,11 @@ body {
   padding: 20px;
   box-shadow: rgba(210, 190, 190, 0.24) 0px 3px 8px;
   overflow-y: auto;
+  transition: opacity 0.3s ease;
+}
+
+.hidden {
+  display: none;
 }
 
 .s2 {
@@ -111,7 +117,7 @@ body {
   padding: 10px;
   margin: 0px 10px;
   border-radius: 5px;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 600;
   margin-top: 10px;
 }
@@ -144,6 +150,7 @@ body {
   border-radius: 5px;
   font-weight: 600;
   color: white;
+  cursor: pointer;
 }
 
 .qty-buttons {
@@ -169,45 +176,7 @@ body {
   text-align: center;
 }
 
-#cart-toggle-btn {
-  position: fixed;
-  top:10px;
-  right:20px;
-  z-index:1001;
-  font-size:26px;
-  background-color: #218838;
-  color:white;
-  padding:10px;
-  border-radius:15px;
-}
-
-.toast {
-  position: fixed;
-  bottom:30px;
-  right:30px;
-  background-color: #218838;
-  color:white;
-  padding:12px 20px;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size:16px;
-  border:0;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.5s ease;
-  z-index: 1002;
-
-}
-.toast.show {
-  opacity: 1;
-  visibility: visible;
-}
-#cart-toggle-btn {
-  visibility:none;
-}
-
-@media(max-width:1024px)
-{ 
+@media(max-width:1024px) { 
   body {
     flex-direction: column;
   }
@@ -232,57 +201,34 @@ body {
   }
   .cart {
     width: 100%;
-    padding:0px;
+    padding: 20px;
     position: fixed;
     right: 0;
     left:0;
     top:70px;
     bottom:0;
-    padding-top:20px;
     border-radius: 15px 15px 0px 0px;
     transform: translateY(100%);
     transition: transform 0.3s ease;
   }
-  .cart.open {
-    transform: translateY(0);
-  }
-  .cart-p > :nth-child(1){
-    width:70px;
-  }
-  .cart-p > :nth-child(3)
-  {
-    font-size: 17px;
-  }
-  .cart-p > :nth-child(4)
-  {
-    margin-right:20px;
-  }
-
 }
 
-@media(max-width:767px)
-{ 
-
+@media(max-width:767px) { 
   .products {
     grid-template-columns: auto  auto;
   }
- 
   .p1{
     font-size:13px;
   }
- 
   .cart-p > :nth-child(1){
     width:40px;
   }
-  .cart-p > :nth-child(2)
-  {
+  .cart-p > :nth-child(2) {
     font-size: 11px;
   }
-  .cart-p > :nth-child(4)
-  {
+  .cart-p > :nth-child(4) {
     margin-right:0px;
     padding:5px 13px;
     font-size:10px;
   }
-  
 }
