@@ -49,7 +49,13 @@ function addToCart(id) {
   } else {
     cart.push({ ...product, quantity: 1 });
   }
-  showToast();
+
+  // Show cart if hidden
+  const cartDiv = document.getElementById("cart");
+  if (cartDiv.classList.contains("hidden")) {
+    cartDiv.classList.remove("hidden");
+  }
+
   updateCart();
 }
 
@@ -78,6 +84,9 @@ function updateCart() {
     cartDiv.innerHTML = "<p>Your cart is empty</p>";
     document.getElementById("total").textContent = "Total: $0";
     localStorage.removeItem("cart");
+
+    // Hide cart when empty
+    document.getElementById("cart").classList.add("hidden");
     return;
   }
 
@@ -105,36 +114,17 @@ function updateCart() {
 
   localStorage.setItem("cart", JSON.stringify(cart));
 }
-window.addEventListener("DOMContentLoaded",() => {
+
+// Load cart from localStorage on page load
+window.addEventListener("DOMContentLoaded", () => {
   const storedCart = localStorage.getItem("cart");
-  if(storedCart)
-  {
+  if (storedCart) {
     cart = JSON.parse(storedCart);
+    if (cart.length > 0) {
+      document.getElementById("cart").classList.remove("hidden");
+    }
     updateCart();
   }
-})
+});
 
 displayProducts();
-
-
-function toggleCart() {
-  const cart = document.querySelector(".cart");
-  const togglebtn =  document.getElementById(".cart-toggle-btn");
-
-  cart.classList.toggle("open");
-  if(cart.classList.contains("open"))
-    {
-    togglebtn.textContent="X";
-  } else {
-    togglebtn.textContent = "🛒";
-
-  }
-}
-
-function showToast() {
-  const toast = document.getElementById("toast");
-  toast.classList.add("show");
-  setTimeout(() => {
-    toast.classList.remove("show");
-  },2000);
-}
