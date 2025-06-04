@@ -7,15 +7,14 @@
   <link rel="stylesheet" href="sc.css" />
 </head>
 <body>
-  <button id = "cart-toggle-btn" onclick = "toggleCart()"> 🛒 </button>
-  <button class = "toast" id = "toast" >Product Added </button>
   <div class="left">
     <span class="s1">🛒 Shopping Cart</span>
     <input type="text" id="searchInput" placeholder="Search for products..." oninput="searchProducts()" />
     <div class="products" id="products"></div>
   </div>
 
-  <div class="cart">
+  <!-- Cart section, hidden initially -->
+  <div class="cart hidden" id="cart">
     <span class="s2">🛒 Your Cart</span>
     <div class="cart-c" id="cart-c"></div>
     <p class="total" id="total">Total: $0</p>
